@@ -1,0 +1,61 @@
+
+{
+  "name": "comments",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["postId", "content", "author", "authorEmail", "status", "createdAt"],
+        "properties": {
+          "postId": {
+            "bsonType": "string",
+            "description": "ID do post relacionado"
+          },
+          "content": {
+            "bsonType": "string",
+            "minLength": 3,
+            "maxLength": 1000,
+            "description": "Conteúdo do comentário"
+          },
+          "author": {
+            "bsonType": "string",
+            "minLength": 2,
+            "maxLength": 100,
+            "description": "Nome do autor do comentário"
+          },
+          "authorEmail": {
+            "bsonType": "string",
+            "description": "Email do autor"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["approved", "pending", "rejected"],
+            "description": "Status de moderação"
+          },
+          "parentId": {
+            "bsonType": "string",
+            "description": "ID do comentário pai (para respostas)"
+          },
+          "likes": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Número de curtidas"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação ISO 8601"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização ISO 8601"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
