@@ -1,0 +1,96 @@
+
+{
+  "name": "posts",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["title", "content", "category", "author", "status", "createdAt"],
+        "properties": {
+          "title": {
+            "bsonType": "string",
+            "minLength": 5,
+            "maxLength": 200,
+            "description": "Título do post"
+          },
+          "content": {
+            "bsonType": "string",
+            "minLength": 50,
+            "description": "Conteúdo principal do post"
+          },
+          "excerpt": {
+            "bsonType": "string",
+            "maxLength": 300,
+            "description": "Resumo do post"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["programacao", "ciberseguranca", "campanhas", "noticias", "leis", "cibercrimes"],
+            "description": "Categoria do post"
+          },
+          "tags": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "string"
+            },
+            "description": "Tags do post"
+          },
+          "author": {
+            "bsonType": "string",
+            "description": "Autor do post"
+          },
+          "authorEmail": {
+            "bsonType": "string",
+            "description": "Email do autor"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["published", "draft", "pending"],
+            "description": "Status de publicação"
+          },
+          "featured": {
+            "bsonType": "bool",
+            "description": "Post em destaque"
+          },
+          "imageUrl": {
+            "bsonType": "string",
+            "description": "URL da imagem principal"
+          },
+          "readTime": {
+            "bsonType": "int",
+            "minimum": 1,
+            "description": "Tempo estimado de leitura em minutos"
+          },
+          "views": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Número de visualizações"
+          },
+          "likes": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Número de curtidas"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação ISO 8601"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização ISO 8601"
+          },
+          "publishedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de publicação ISO 8601"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
